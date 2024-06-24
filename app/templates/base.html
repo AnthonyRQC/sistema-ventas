@@ -7,7 +7,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>Tienda Amiga</title>
+        <title>MiniMarket</title>
 
         {% block styles %}
         <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
@@ -20,7 +20,7 @@
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
             <!-- Navbar Brand-->
             {# Podemos entrar al index.html de intro por su blueprint creado en init de raiz #}
-            <a class="navbar-brand ps-3" href="{{ url_for('intro_bp.home') }}">Tienda Amiga</a>
+            <a class="navbar-brand ps-3" href="{{ url_for('intro_bp.home') }}">MiniMarket</a>
             <!-- Sidebar Toggle-->
             <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#"><i class="fas fa-bars"></i></button>
             <!-- Navbar Search-->
@@ -50,87 +50,87 @@
                         <div class="nav">
 
                             <!--  Seccion Ventas  -->
-                            <div class="sb-sidenav-menu-heading">Ventas</div>
+                            <div class="sb-sidenav-menu-heading">Sales</div>
                             <a class="nav-link" href="index.html">
                                 <div class="sb-nav-link-icon"><i class="fa-solid fa-truck"></i></div>
-                                Registrar
+                                Register
                             </a>
                             <a class="nav-link" href="index.html">
                                 <div class="sb-nav-link-icon"><i class="fa-solid fa-truck"></i></div>
-                                Ver Detalle
+                                View Details
                             </a>
                             <!--  Seccion Compras  -->
-                            <div class="sb-sidenav-menu-heading">Compras</div>
+                            <div class="sb-sidenav-menu-heading">Purchases</div>
                             <a class="nav-link" href="index.html">
                                 <div class="sb-nav-link-icon"><i class="fa-solid fa-truck"></i></div>
-                                Registrar
+                                Register
                             </a>
                             <a class="nav-link" href="index.html">
                                 <div class="sb-nav-link-icon"><i class="fa-solid fa-truck"></i></div>
-                                Ver Detalle
+                                View Details
                             </a>
 
                             <div class="sb-sidenav-menu-heading">Relaciones</div>
                             <!--  Seccion Clientes  -->
                             <a class="nav-link" href="index.html">
                                 <div class="sb-nav-link-icon"><i class="fa-solid fa-people-group"></i></div>
-                                Clientes
+                                Customers
                             </a>
                             <!--  Seccion Proveedores  -->
                             <a class="nav-link" href="index.html">
                                 <div class="sb-nav-link-icon"><i class="fa-regular fa-handshake"></i></div>
-                                Proveedores
+                                Suppliers
                             </a>
 
                             <!--  Seccion Usuarios  -->
                             <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseUsers" aria-expanded="false" aria-controls="collapseUsers">
                                 <div class="sb-nav-link-icon"><i class="fa-solid fa-users"></i></div>
-                                Usuarios
+                                Users
                                 <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                             </a>
                             <div class="collapse" id="collapseUsers" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">
-                                    <a class="nav-link" href="layout-static.html">Nuevo Usuario</a>
-                                    <a class="nav-link" href="layout-sidenav-light.html">Listar Usuarios</a>
+                                    <a class="nav-link" href="layout-static.html">New User</a>
+                                    <a class="nav-link" href="layout-sidenav-light.html">List Users</a>
                                 </nav>
                             </div>
                             <!--  Seccion Mantendor  -->
                             <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseMantenedor" aria-expanded="false" aria-controls="collapseMantenedor">
                                 <div class="sb-nav-link-icon"><i class="fa-solid fa-screwdriver-wrench"></i></div>
-                                Mantenedor
+                                Settings
                                 <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                             </a>
                             <div class="collapse" id="collapseMantenedor" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">
-                                    <a class="nav-link" href="layout-static.html">Categoria</a>
-                                    <a class="nav-link" href="layout-sidenav-light.html">Producto</a>
-                                    <a class="nav-link" href="layout-sidenav-light.html">Negocio</a>
+                                    <a class="nav-link" href="layout-static.html">Categories</a>
+                                    <a class="nav-link" href="layout-sidenav-light.html">Product</a>
+                                    <a class="nav-link" href="layout-sidenav-light.html">Business</a>
                                 </nav>
                             </div>
 
                             <!--  Seccion Reportes  -->
                             <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseReportes" aria-expanded="false" aria-controls="collapseReportes">
                                 <div class="sb-nav-link-icon"><i class="fa-solid fa-chart-line"></i></div>
-                                Reportes
+                                Report
                                 <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                             </a>
                             <div class="collapse" id="collapseReportes" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">
-                                    <a class="nav-link" href="layout-static.html">Reporte Compras</a>
-                                    <a class="nav-link" href="layout-sidenav-light.html">Reporte Ventas</a>
+                                    <a class="nav-link" href="layout-static.html">Purchase Report</a>
+                                    <a class="nav-link" href="layout-sidenav-light.html">Sales Report</a>
                                 </nav>
                             </div>
                             <!--  Seccion Acerca de  -->
                             <a class="nav-link" href="{{ url_for('intro_bp.about') }}">
                                 <div class="sb-nav-link-icon"><i class="fa-solid fa-question-circle"></i></div>
-                                Acerca de
+                                About
                             </a>
 
                         </div>
                     </div>
                     <div class="sb-sidenav-footer">
                         <div class="small">Logged in as:</div>
-                        Start Bootstrap
+                        Hello User
                     </div>
                 </nav>
             </div>
@@ -139,14 +139,14 @@
             <div id="layoutSidenav_content">
 
                 {% block content %}
-                    {# aqui va el boy de la pagina web #}
+                    {# aqui va el body de la pagina web #}
                 {% endblock %}
 
 
                 <footer class="py-4 bg-light mt-auto">
                     <div class="container-fluid px-4">
                         <div class="d-flex align-items-center justify-content-between small">
-                            <div class="text-muted">Copyright &copy; Your Website 2023</div>
+                            <div class="text-muted">Copyright &copy; Tony'x Website 2024</div>
                             <div>
                                 <a href="#">Privacy Policy</a>
                                 &middot;
