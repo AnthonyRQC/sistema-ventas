@@ -1,4 +1,3 @@
-from app import create_app
-
-app = create_app()
+from my_app import app
+app.run(debug=True)
 
