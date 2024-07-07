@@ -1,8 +1,18 @@
-from flask import Blueprint
+from werkzeug.exceptions import abort
+from flask import Blueprint, render_template
 from my_app.product.models import PRODUCTS
 
-product = Blueprint('product', __name__)
+product_blueprint = Blueprint('product', __name__)
 
-@product.route('/')
-def hello():
-    return PRODUCTS['iphone']['name']
+@product_blueprint.route('/')
+@product_blueprint.route('/home')
+def home():
+    return render_template('home.html', products=PRODUCTS)
+
+@product_blueprint.route('/product/<key>')
+def product(key):
+    product = PRODUCTS.get(key)
+    if not product:
+        abort(404)
+    return render_template('product.html', product=product)
+
