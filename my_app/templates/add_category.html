@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-lg-7">
+            <div class="card shadow-lg border-0 rounded-lg mt-5">
+                <div class="card-header"><h3 class="text-center font-weight-light my-4">Add Category</h3></div>
+                <div class="card-body">
+                    <form action="" method="post" novalidate>
+                        {{ form.hidden_tag() }}
+                        <div class="form-floating mb-3">
+                            {{ form.category(class_="form-control", placeholder="") }}
+                            {{ form.category.label }}
+                            {% for error in form.category.errors %}
+                            <span style="color: red;">[{{ error }}]</span>
+                            {% endfor %}   
+                        </div>
+                        <div class="form-floating mb-3">
+                            {{ form.details(class_="form-control", placeholder="") }}
+                            {{ form.details.label }}     
+                            {% for error in form.details.errors %}
+                            <span style="color: red;">[{{ error }}]</span>
+                            {% endfor %}                    
+                        </div>
+
+                        <div class="mt-4 mb-0">
+                            <div class="d-grid">
+                                {{ form.submit(class_="btn btn-primary btn-block") }}
+                            </div>    
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+
+
+

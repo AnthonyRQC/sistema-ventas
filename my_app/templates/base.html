@@ -137,6 +137,15 @@
             <!-- Main Content-->
 
             <div id="layoutSidenav_content">
+                {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                <ul>
+                    {% for message in messages %}
+                    <li>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+                {% endwith %}
 
                 {% block content %}
                     {# aqui va el body de la pagina web #}
