@@ -20,7 +20,7 @@
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
             <!-- Navbar Brand-->
             {# Podemos entrar al index.html de intro por su blueprint creado en init de raiz #}
-            <a class="navbar-brand ps-3" href="">MiniMarket</a>
+            <a class="navbar-brand ps-3" href="{{ url_for('home') }}">MiniMarket</a>
             <!-- Sidebar Toggle-->
             <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#"><i class="fas fa-bars"></i></button>
             <!-- Navbar Search-->
@@ -102,7 +102,7 @@
                             </a>
                             <div class="collapse" id="collapseMantenedor" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">
-                                    <a class="nav-link" href="layout-static.html">Categories</a>
+                                    <a class="nav-link" href="{{ url_for('add_category') }}">Categories</a>
                                     <a class="nav-link" href="layout-sidenav-light.html">Product</a>
                                     <a class="nav-link" href="layout-sidenav-light.html">Business</a>
                                 </nav>
