@@ -34,3 +34,106 @@ class Product(db.Model):
     
     def __repr__(self):
         return '<Product {}>'.format(self.name)
+    
+class Client(db.Model):
+    id: so.Mapped[int] = so.mapped_column(primary_key=True)
+    document_number: so.Mapped[int]
+    first_name: so.Mapped[str] = so.mapped_column(sa.String(64))
+    last_name: so.Mapped[str] = so.mapped_column(sa.String(64))
+    email: so.Mapped[Optional[str]] = so.mapped_column(sa.String(120))
+    phone_number: so.Mapped[int]
+    state: so.Mapped[Optional[str]] = so.mapped_column(sa.String(64))
+    created_at: so.Mapped[datetime] = so.mapped_column(
+        index=True, default=lambda: datetime.now(timezone.utc))
+    
+    def __repr__(self):
+        return '<Client first name{}, last name{}>'.format(self.first_name, self.last_name)
+    
+
+class User(db.Model):
+    id: so.Mapped[int] = so.mapped_column(primary_key=True)
+    user_name: so.Mapped[str] = so.mapped_column(sa.String(64))
+    password: so.Mapped[str] = so.mapped_column(sa.String(64))
+    document_number: so.Mapped[int]
+    first_name: so.Mapped[str] = so.mapped_column(sa.String(64))
+    last_name: so.Mapped[str] = so.mapped_column(sa.String(64))
+    email: so.Mapped[Optional[str]] = so.mapped_column(sa.String(120))
+    state: so.Mapped[Optional[str]] = so.mapped_column(sa.String(64))
+    created_at: so.Mapped[datetime] = so.mapped_column(
+        index=True, default=lambda: datetime.now(timezone.utc))
+    
+    def __repr__(self):
+        return '<User first name{}, last name{}>'.format(self.first_name, self.last_name)
+    
+class Sale(db.Model):
+    id: so.Mapped[int] = so.mapped_column(primary_key=True)
+    # para poder acceder a User y Client objects directamente desde Sale y vice versa
+    user_id: so.Mapped[int] = so.mapped_column(sa.ForeignKey(User.id),
+                                               index=True)
+    user: so.Mapped[User] = so.relationship(User)
+    client_id: so.Mapped[int] = so.mapped_column(sa.ForeignKey(Client.id),
+                                               index=True)
+    client: so.Mapped[Client] = so.relationship(Client)
+    # columnas normales de la tabla
+    client_doc_number: so.Mapped[int]
+    client_doc_name: so.Mapped[str] = so.mapped_column(sa.String(64))
+    recived_money: so.Mapped[float]
+    change_money: so.Mapped[float]
+    total_amount_sale: so.Mapped[float]
+    created_at: so.Mapped[datetime] = so.mapped_column(
+        index=True, default=lambda: datetime.now(timezone.utc))
+    def __repr__(self):
+        return '<Sale recieved money{}, change money{}>'.format(self.recived_money, self.change_money)
+    
+class SaleDetail(db.Model):
+    __tablename__ = "sale_detail"
+    id: so.Mapped[int] = so.mapped_column(primary_key=True)
+    sale_id: so.Mapped[int] = so.mapped_column(sa.ForeignKey(Sale.id), index=True)
+    product_id: so.Mapped[int] = so.mapped_column(sa.ForeignKey(Product.id), index=True)
+    price_sale:so.Mapped[float]
+    quantity: so.Mapped[int]
+    sub_total:so.Mapped[float]
+    created_at: so.Mapped[datetime] = so.mapped_column(
+        index=True, default=lambda: datetime.now(timezone.utc))
+    
+class Suplier(db.Model):
+    id: so.Mapped[int] = so.mapped_column(primary_key=True)
+    document: so.Mapped[int]
+    email: so.Mapped[Optional[str]] = so.mapped_column(sa.String(120))
+    phone_number: so.Mapped[int]
+    state: so.Mapped[Optional[str]] = so.mapped_column(sa.String(64))
+    created_at: so.Mapped[datetime] = so.mapped_column(
+        index=True, default=lambda: datetime.now(timezone.utc))
+    
+class Purchase(db.Model):
+    id: so.Mapped[int] = so.mapped_column(primary_key=True)
+    user_id: so.Mapped[int] = so.mapped_column(sa.ForeignKey(User.id), index=True)
+    suplier_id: so.Mapped[int] = so.mapped_column(sa.ForeignKey(Suplier.id), index=True)
+    document_number: so.Mapped[int]
+    document_type: so.Mapped[str] = so.mapped_column(sa.String(64))
+    total_amount_sale: so.Mapped[float]
+    created_at: so.Mapped[datetime] = so.mapped_column(
+        index=True, default=lambda: datetime.now(timezone.utc))
+    
+    def __repr__(self):
+        return '<purchase document number{}, document type{}>'.format(self.document_number, self.document_type)
+    
+class PurchaseDetail(db.Model):
+    id: so.Mapped[int] = so.mapped_column(primary_key=True)
+    purchase_id: so.Mapped[int] = so.mapped_column(sa.ForeignKey(Purchase.id), index=True)
+    product_id: so.Mapped[int] = so.mapped_column(sa.ForeignKey(Product.id), index=True)
+    purchase_price:so.Mapped[float]
+    sale_price:so.Mapped[float]
+    quantity: so.Mapped[int]
+    total:so.Mapped[float]
+    created_at: so.Mapped[datetime] = so.mapped_column(
+        index=True, default=lambda: datetime.now(timezone.utc))
+    
+class Invoice(db.Model):
+    id: so.Mapped[int] = so.mapped_column(primary_key=True)
+    sale_id: so.Mapped[int] = so.mapped_column(sa.ForeignKey(Sale.id), index=True)
+    total_amount_sale: so.Mapped[float]
+    payment_method: so.Mapped[str] = so.mapped_column(sa.String(64))
+    invoice_date: so.Mapped[datetime]
+    created_at: so.Mapped[datetime] = so.mapped_column(
+        index=True, default=lambda: datetime.now(timezone.utc))

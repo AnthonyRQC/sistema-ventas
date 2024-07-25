@@ -51,7 +51,7 @@
 
                             <!--  Seccion Ventas  -->
                             <div class="sb-sidenav-menu-heading">Sales</div>
-                            <a class="nav-link" href="index.html">
+                            <a class="nav-link" href="{{ url_for('sale') }}">
                                 <div class="sb-nav-link-icon"><i class="fa-solid fa-truck"></i></div>
                                 Register
                             </a>
@@ -90,7 +90,7 @@
                             </a>
                             <div class="collapse" id="collapseUsers" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">
-                                    <a class="nav-link" href="layout-static.html">New User</a>
+                                    <a class="nav-link" href="{{ url_for('new_user') }}">New User</a>
                                     <a class="nav-link" href="layout-sidenav-light.html">List Users</a>
                                 </nav>
                             </div>

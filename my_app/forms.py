@@ -6,3 +6,4 @@ class CategoryForm(FlaskForm):
     category = StringField('Category Name',validators=[DataRequired()])
     details = StringField('Details', validators=[DataRequired()])
     submit = SubmitField('Create Category')
+
