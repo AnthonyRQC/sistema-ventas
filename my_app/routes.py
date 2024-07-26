@@ -1,6 +1,6 @@
 from flask import render_template, flash, redirect
 from my_app import app
-from my_app.forms import CategoryForm
+from my_app.forms import CategoryForm, LoginForm
 from my_app.product.models import PRODUCTS
 
 @app.route('/')
@@ -19,10 +19,10 @@ def add_category():
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
-    form = CategoryForm()
+    form = LoginForm()
     if form.validate_on_submit():
-        flash('Category requested {}, details={}'.format(
-            form.category.data, form.details.data))
+        flash('User requested {}, password={}'.format(
+            form.username.data, form.password.data))
         return redirect('/')
     return render_template('login.html', form=form)
 

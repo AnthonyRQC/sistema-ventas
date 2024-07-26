@@ -4,6 +4,17 @@ import sqlalchemy.orm as so
 from my_app import db
 # python module to make optional a column
 from typing import Optional
+# seguridad a las contraseñas
+from werkzeug.security import generate_password_hash, check_password_hash
+# mixins para dar implementacion a la clase usuario como autenticaciones, anonimos, activdad y otros
+from flask_login import UserMixin
+# importando de my_app init el login agregado a la aplicacion
+from my_app import login
+
+# funcion para poder mantener el log de un usario en base a su id 
+@login.user_loader
+def load_user(id):
+    return db.session.get(User, int(id))
 
 # Category table
 class Category(db.Model):
@@ -49,18 +60,23 @@ class Client(db.Model):
     def __repr__(self):
         return '<Client first name{}, last name{}>'.format(self.first_name, self.last_name)
     
-
-class User(db.Model):
+# agregando usermixin a la tabla usuarios
+class User(UserMixin, db.Model):
     id: so.Mapped[int] = so.mapped_column(primary_key=True)
     user_name: so.Mapped[str] = so.mapped_column(sa.String(64))
-    password: so.Mapped[str] = so.mapped_column(sa.String(64))
-    document_number: so.Mapped[int]
-    first_name: so.Mapped[str] = so.mapped_column(sa.String(64))
-    last_name: so.Mapped[str] = so.mapped_column(sa.String(64))
+    password: so.Mapped[Optional[str]] = so.mapped_column(sa.String(64))
+    document_number: so.Mapped[Optional[int]]
+    first_name: so.Mapped[Optional[str]] = so.mapped_column(sa.String(64))
+    last_name: so.Mapped[Optional[str]] = so.mapped_column(sa.String(64))
     email: so.Mapped[Optional[str]] = so.mapped_column(sa.String(120))
     state: so.Mapped[Optional[str]] = so.mapped_column(sa.String(64))
     created_at: so.Mapped[datetime] = so.mapped_column(
         index=True, default=lambda: datetime.now(timezone.utc))
+    def set_password(self, password):
+        self.password_hash = generate_password_hash(password)
+    
+    def check_password(self, password):
+        return check_password_hash(self.password_hash, password)
     
     def __repr__(self):
         return '<User first name{}, last name{}>'.format(self.first_name, self.last_name)

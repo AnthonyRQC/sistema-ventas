@@ -4,6 +4,7 @@ from config import Config
 from flask_sqlalchemy import SQLAlchemy
 # libreria externa instalada por recomendacion de un tutorial
 from flask_migrate import Migrate
+from flask_login import LoginManager
 
 from my_app.product.views import product_blueprint
 
@@ -14,6 +15,8 @@ app.config.from_object(Config)
 db = SQLAlchemy(app)
 # usando la libreria migrate
 migrate = Migrate(app, db)
+# create login in app
+login = LoginManager(app)
 
 app.register_blueprint(product_blueprint)
 

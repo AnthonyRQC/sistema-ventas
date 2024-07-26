@@ -6,4 +6,9 @@ class CategoryForm(FlaskForm):
     category = StringField('Category Name',validators=[DataRequired()])
     details = StringField('Details', validators=[DataRequired()])
     submit = SubmitField('Create Category')
-
+    
+class LoginForm(FlaskForm):
+    username = StringField('Username', validators=[DataRequired()])
+    password = PasswordField('Password', validators=[DataRequired()])
+    submit = SubmitField('Sign In')
+    
