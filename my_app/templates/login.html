@@ -17,6 +17,15 @@
         <div id="layoutAuthentication">
             <div id="layoutAuthentication_content">
                 <main>
+                    {% with messages = get_flashed_messages() %}
+                    {% if messages %}
+                    <ul>
+                        {% for message in messages %}
+                        <li>{{ message }}</li>
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
+                    {% endwith %}
                     
                     <div class="container">
                         <div class="row justify-content-center">
@@ -39,6 +48,11 @@
                                                 {% for error in form.password.errors %}
                                                 <span style="color: red;">[{{ error }}]</span>
                                                 {% endfor %}                    
+                                            </div>
+
+                                            <div class="mb-3">
+                                                {{ form.remember_me() }} 
+                                                {{ form.remember_me.label }}
                                             </div>
 
                                             <div class="mt-4 mb-0">

@@ -72,11 +72,11 @@ class User(UserMixin, db.Model):
     state: so.Mapped[Optional[str]] = so.mapped_column(sa.String(64))
     created_at: so.Mapped[datetime] = so.mapped_column(
         index=True, default=lambda: datetime.now(timezone.utc))
-    def set_password(self, password):
-        self.password_hash = generate_password_hash(password)
+    def set_password(self, form_password):
+        self.password = generate_password_hash(form_password)
     
-    def check_password(self, password):
-        return check_password_hash(self.password_hash, password)
+    def check_password(self, form_password):
+        return check_password_hash(self.password, form_password)
     
     def __repr__(self):
         return '<User first name{}, last name{}>'.format(self.first_name, self.last_name)

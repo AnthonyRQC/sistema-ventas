@@ -17,6 +17,8 @@ db = SQLAlchemy(app)
 migrate = Migrate(app, db)
 # create login in app
 login = LoginManager(app)
+# esta funcion es donde redirige la aplicacion si el usuario no esta logeado con @login_required
+login.login_view = 'login'
 
 app.register_blueprint(product_blueprint)
 
