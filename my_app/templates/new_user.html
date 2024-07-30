@@ -26,53 +26,36 @@
                         <div class="row mb-3">
                             <div class="col-md-6">
                                 <div class="form-floating mb-3 mb-md-0">
-                                    {{ form.firstname(size=32) }}
+                                    {{ form.firstname(class_="form-control", placeholder="") }}
                                     {{ form.firstname.label }}
                                     {% for error in form.firstname.errors %}
                                     <span style="color: red;">[{{ error }}]</span>
                                     {% endfor %}
-                                    <!--  
-                                    <input class="form-control" type="text" placeholder="Enter your first name" />
-                                    <label for="inputFirstName">First name</label>
-                                    -->
-                                    
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-floating">
-                                    {{ form.lastname(size=32) }}
+                                    {{ form.lastname(class_="form-control", placeholder="") }}
                                     {{ form.lastname.label }}
                                     {% for error in form.lastname.errors %}
                                     <span style="color: red;">[{{ error }}]</span>
                                     {% endfor %}
-                                    <!--  
-                                    <input class="form-control" type="text" placeholder="Enter your last name" />
-                                    <label for="inputLastName">Last name</label>
-                                    -->
                                 </div>
                             </div>
                         </div>
                         <div class="row mb-3">
                             <div class="col-md-6">
                                 <div class="form-floating mb-3 mb-md-0">
-                                    {{ form.docnumber(size=32) }}
+                                    {{ form.docnumber(class_="form-control", placeholder="") }}
                                     {{ form.docnumber.label }}
                                     {% for error in form.docnumber.errors %}
                                     <span style="color: red;">[{{ error }}]</span>
                                     {% endfor %}
-                                    <!--  
-                                    <input class="form-control" type="text" placeholder="Enter your first name" />
-                                    <label for="inputFirstName">Document Number</label>
-                                    -->
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-floating">
-                                    <!--  
-                                    <input class="form-control" type="text" placeholder="Enter your last name" />
-                                    <label for="inputLastName">State</label>
-                                    -->
-                                    {{ form.state(size=32) }}
+                                    {{ form.state(class_="form-control", placeholder="") }}
                                     {{ form.state.label }}
                                     {% for error in form.state.errors %}
                                     <span style="color: red;">[{{ error }}]</span>
@@ -83,11 +66,7 @@
                         </div>
 
                         <div class="form-floating mb-3">
-                            <!--  
-                                <input class="form-control" type="email" placeholder="name@example.com" />
-                                <label for="inputEmail">Email address</label>
-                            -->
-                            {{ form.email(size=32) }}
+                            {{ form.email(class_="form-control", placeholder="") }}
                             {{ form.email.label }}
                             {% for error in form.email.errors %}
                             <span style="color: red;">[{{ error }}]</span>
@@ -95,11 +74,7 @@
                             
                         </div>
                         <div class="form-floating mb-3">
-                            <!--  
-                            <input class="form-control" type="text" placeholder="name@example.com" />
-                            <label for="inputEmail">User Name</label>
-                            -->
-                            {{ form.username(size=32) }}
+                            {{ form.username(class_="form-control", placeholder="") }}
                             {{ form.username.label }}
                             {% for error in form.username.errors %}
                             <span style="color: red;">[{{ error }}]</span>
@@ -109,11 +84,7 @@
                         <div class="row mb-3">
                             <div class="col-md-6">    
                                 <div class="form-floating mb-3 mb-md-0">
-                                    <!--  
-                                    <input class="form-control" type="password" placeholder="Create a password" />
-                                    <label for="inputPassword">Password</label>
-                                    -->
-                                    {{ form.password(size=32) }}
+                                    {{ form.password(class_="form-control", placeholder="") }}
                                     {{ form.password.label }}
                                     {% for error in form.password.errors %}
                                     <span style="color: red;">[{{ error }}]</span>
@@ -123,11 +94,7 @@
 
                             <div class="col-md-6">
                                 <div class="form-floating mb-3 mb-md-0">
-                                    <!--  
-                                    <input class="form-control" type="password" placeholder="Confirm password" />
-                                    <label for="inputPasswordConfirm">Confirm Password</label>
-                                    -->
-                                    {{ form.password2(size=32) }}
+                                    {{ form.password2(class_="form-control", placeholder="") }}
                                     {{ form.password2.label }}
                                     {% for error in form.password2.errors %}
                                     <span style="color: red;">[{{ error }}]</span>
