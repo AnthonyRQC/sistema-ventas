@@ -1,6 +1,6 @@
 from flask import render_template, flash, redirect, url_for
 from my_app import app
-from my_app.forms import CategoryForm, LoginForm
+from my_app.forms import CategoryForm, LoginForm, RegisterForm
 from my_app.product.models import PRODUCTS
 # import para el funcioamiento de login y la base de datos
 from flask_login import current_user, login_user, logout_user, login_required
@@ -64,10 +64,24 @@ def logout():
     logout_user()
     return redirect(url_for('login'))
 
-@app.route('/register')
-def new_user():
-    return render_template('new_user.html')
+@app.route('/register', methods=['GET', 'POST'])
+def register():
+    # estas lineas no nos sirven por que solo se puede registrar una vez iniciado por el admin
+    #if current_user.is_authenticated:
+    #    return redirect(url_for('index'))
+    form = RegisterForm()
+    if form.validate_on_submit():
+        user = User(user_name=form.username.data, email=form.email.data)
+        user.set_password(form.password.data)
+        db.session.add(user)
+        db.session.commit()
+        flash('Congratulations, you are now a registered user!')
+        return redirect(url_for('home'))
+    return render_template('new_user.html', form=form)
+
+
 
 @app.route('/sale')
 def sale():
     return render_template('sale.html')
+ 
