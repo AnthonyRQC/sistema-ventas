@@ -22,4 +22,4 @@ login.login_view = 'login'
 
 app.register_blueprint(product_blueprint)
 
-from my_app import routes, models
+from my_app import routes, models, errors

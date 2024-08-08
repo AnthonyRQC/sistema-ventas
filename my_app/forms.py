@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, BooleanField, SubmitField
+from wtforms import StringField, PasswordField, BooleanField, SubmitField, IntegerField, DecimalField
 # validators in forms Email validator needs install email-validator
 from wtforms.validators import ValidationError, DataRequired, Email, EqualTo
 # importamos la base de datos para verificar duplicaciones de usuarios o emails
@@ -21,7 +21,7 @@ class LoginForm(FlaskForm):
 class RegisterForm(FlaskForm):
     firstname = StringField('First Name', validators=[DataRequired()])
     lastname = StringField('Last Name', validators=[DataRequired()])
-    docnumber = StringField('Document Number', validators=[DataRequired()])
+    docnumber = IntegerField('Document Number', validators=[DataRequired()])
     state = StringField('State', validators=[DataRequired()])
     email = StringField('Email Adress', validators=[DataRequired(), Email()])
     username = StringField('Username', validators=[DataRequired()])

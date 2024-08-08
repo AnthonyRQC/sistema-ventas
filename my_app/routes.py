@@ -38,8 +38,6 @@ def login():
         user = db.session.scalar(
             sa.select(User).where(User.user_name == form.username.data)
         )
-        print(f"name: {form.username.data} password: {form.password.data}")
-        print(f"true or false: {user.check_password(form.password.data)}")
         if user is None or not user.check_password(form.password.data):
             flash('Invalid username or password')
             print('not loged')

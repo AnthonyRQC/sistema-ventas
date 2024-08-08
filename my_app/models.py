@@ -33,9 +33,9 @@ class Category(db.Model):
 class Product(db.Model):
     id: so.Mapped[int] = so.mapped_column(primary_key=True)
     name: so.Mapped[str] = so.mapped_column(sa.String(60))
-    stock: so.Mapped[int]
-    purchase_price: so.Mapped[float]
-    selling_price: so.Mapped[float]
+    stock: so.Mapped[Optional[int]]
+    purchase_price: so.Mapped[Optional[float]]
+    selling_price: so.Mapped[Optional[float]]
     description: so.Mapped[Optional[str]] = so.mapped_column(sa.String(120))
     created_at: so.Mapped[datetime] = so.mapped_column(
         index=True, default=lambda: datetime.now(timezone.utc))
@@ -48,11 +48,11 @@ class Product(db.Model):
     
 class Client(db.Model):
     id: so.Mapped[int] = so.mapped_column(primary_key=True)
-    document_number: so.Mapped[int]
+    document_number: so.Mapped[Optional[int]]
     first_name: so.Mapped[str] = so.mapped_column(sa.String(64))
     last_name: so.Mapped[str] = so.mapped_column(sa.String(64))
     email: so.Mapped[Optional[str]] = so.mapped_column(sa.String(120))
-    phone_number: so.Mapped[int]
+    phone_number: so.Mapped[Optional[int]]
     state: so.Mapped[Optional[str]] = so.mapped_column(sa.String(64))
     created_at: so.Mapped[datetime] = so.mapped_column(
         index=True, default=lambda: datetime.now(timezone.utc))
@@ -63,12 +63,12 @@ class Client(db.Model):
 # agregando usermixin a la tabla usuarios
 class User(UserMixin, db.Model):
     id: so.Mapped[int] = so.mapped_column(primary_key=True)
-    user_name: so.Mapped[str] = so.mapped_column(sa.String(64))
+    user_name: so.Mapped[str] = so.mapped_column(sa.String(64), index=True, unique=True)
     password: so.Mapped[Optional[str]] = so.mapped_column(sa.String(64))
     document_number: so.Mapped[Optional[int]]
     first_name: so.Mapped[Optional[str]] = so.mapped_column(sa.String(64))
     last_name: so.Mapped[Optional[str]] = so.mapped_column(sa.String(64))
-    email: so.Mapped[Optional[str]] = so.mapped_column(sa.String(120))
+    email: so.Mapped[Optional[str]] = so.mapped_column(sa.String(120), index=True, unique=True)
     state: so.Mapped[Optional[str]] = so.mapped_column(sa.String(64))
     created_at: so.Mapped[datetime] = so.mapped_column(
         index=True, default=lambda: datetime.now(timezone.utc))
@@ -91,11 +91,11 @@ class Sale(db.Model):
                                                index=True)
     client: so.Mapped[Client] = so.relationship(Client)
     # columnas normales de la tabla
-    client_doc_number: so.Mapped[int]
-    client_doc_name: so.Mapped[str] = so.mapped_column(sa.String(64))
-    recived_money: so.Mapped[float]
-    change_money: so.Mapped[float]
-    total_amount_sale: so.Mapped[float]
+    client_doc_number: so.Mapped[Optional[int]]
+    client_doc_name: so.Mapped[Optional[str]] = so.mapped_column(sa.String(64))
+    recived_money: so.Mapped[Optional[float]]
+    change_money: so.Mapped[Optional[float]]
+    total_amount_sale: so.Mapped[Optional[float]]
     created_at: so.Mapped[datetime] = so.mapped_column(
         index=True, default=lambda: datetime.now(timezone.utc))
     def __repr__(self):
